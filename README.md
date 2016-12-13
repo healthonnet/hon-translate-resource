@@ -23,6 +23,7 @@ Options
 | `INPUT`         | input file (default ressource/test.txt)
 | `OUTPUT`        | output file (default ressource/out.txt)
 | `SCORE`         | strip Mesh score & concat (default false)
+| `STRICT`        | exit if one translation error happened (default false)
 
 Developers
 ----------

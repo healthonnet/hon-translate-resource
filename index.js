@@ -9,6 +9,7 @@ const env = require('env-var');
 const inputFile = env('INPUT').asString() || 'ressource/test.txt';
 const outputFile = env('OUTPUT').asString() || 'ressource/out.txt';
 const scoreOption = env('SCORE').asBool();
+const strictMode = env('STRICT').asBool();
 
 readFileLineByLine(inputFile, outputFile);
 
@@ -40,6 +41,9 @@ function readFileLineByLine(inputFile, outputFile) {
             fs.appendFileSync(outputFile, text + score + '\n');
         }).catch(err => {
             console.error(err);
+            if (strictMode) {
+                process.exit(1);
+            }
         });
     });
 }
