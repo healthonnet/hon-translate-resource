@@ -1,4 +1,4 @@
-# hon-translate-ressource
+# hon-translate-resource
 Translate massive mesh file through google translate
 
 Installation

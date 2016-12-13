@@ -6,8 +6,8 @@ const translate = require('google-translate-api');
 const env = require('env-var');
 
 // Parameters
-const inputFile = env('INPUT').asString() || 'ressource/test.txt';
-const outputFile = env('OUTPUT').asString() || 'ressource/out.txt';
+const inputFile = env('INPUT').asString() || 'resource/test.txt';
+const outputFile = env('OUTPUT').asString() || 'resource/out.txt';
 const scoreOption = env('SCORE').asBool();
 const strictMode = env('STRICT').asBool();
 
