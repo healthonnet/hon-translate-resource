@@ -1,0 +1,15 @@
+{
+  "name": "hon-translate-ressource",
+  "version": "1.0.0",
+  "description": "translate massive mesh",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "author": "Adrion <adrion.dev@gmail.com> (cedricfrossard@gmail.com)",
+  "license": "MIT",
+  "dependencies": {
+    "google-translate-api": "^2.2.2"
+  }
+}

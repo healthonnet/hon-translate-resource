@@ -1,0 +1,3 @@
+dream : 1
+winter : 1
+duck : 1
