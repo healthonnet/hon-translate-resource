@@ -1,11 +1,14 @@
-var fs = require('fs');
-var readline = require('readline');
-var Stream = require('stream');
-var translate = require('google-translate-api');
+// Dependencies
+const fs = require('fs');
+const readline = require('readline');
+const Stream = require('stream');
+const translate = require('google-translate-api');
+const env = require('env-var');
 
-var inputFile = process.env.INPUT || 'ressource/test.txt';
-var outputFile = process.env.OUTPUT || 'ressource/out.txt';
-var scoreOption = process.env.SCORE || true;
+// Parameters
+const inputFile = env('INPUT').asString() || 'ressource/test.txt';
+const outputFile = env('OUTPUT').asString() || 'ressource/out.txt';
+const scoreOption = env('SCORE').asBool();
 
 readFileLineByLine(inputFile, outputFile);
 
@@ -24,13 +27,14 @@ function readFileLineByLine(inputFile, outputFile) {
     });
 
     rl.on('line', function (line) {
-        var score = line.slice(line.length -4, line.length);
+        var score = '';
+        var word = line;
 
-        if (!scoreOption) {
-            score = '';
+        if (scoreOption) {
+            score = line.slice(line.length -4, line.length);
+            word = line.substring(0, line.length -4 );
         }
 
-        var word = line.substring(0, line.length -4 );
         translate(word, {from: 'en', to: 'fr'}).then(res => {
             var text = res.text.toLowerCase();
             fs.appendFileSync(outputFile, text + score + '\n');
