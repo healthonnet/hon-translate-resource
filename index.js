@@ -9,6 +9,7 @@ const apiKey = env('APIKEY').required().asString();
 const inputFile = env('INPUT').asString() || 'resource/test.txt';
 const outputFile = env('OUTPUT').asString() || 'resource/out.txt';
 const scoreOption = env('SCORE').asBool();
+const strictMode = env('STRICT').asBool();
 
 const googleTranslate = require('google-translate')(apiKey);
 
@@ -40,7 +41,9 @@ function readFileLineByLine(inputFile, outputFile) {
         googleTranslate.translate(word, 'en', 'fr', function(err, translation) {
             if (err) {
                 console.error(err);
-                process.exit(1);
+                if (strictMode) {
+                    process.exit(1);
+                }
             }
             var text = translation.translatedText.toLowerCase();
             fs.appendFileSync(outputFile, text + score + '\n');

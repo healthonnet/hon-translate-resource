@@ -24,6 +24,7 @@ Options
 | `INPUT`         | input file (default ressource/test.txt)
 | `OUTPUT`        | output file (default ressource/out.txt)
 | `SCORE`         | strip Mesh score & concat (default false)
+| `STRICT`        | die if any error occurs (default false)
 
 
 Developers
