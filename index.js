@@ -2,14 +2,15 @@
 const fs = require('fs');
 const readline = require('readline');
 const Stream = require('stream');
-const translate = require('google-translate-api');
 const env = require('env-var');
 
 // Parameters
+const apiKey = env('APIKEY').required().asString();
 const inputFile = env('INPUT').asString() || 'resource/test.txt';
 const outputFile = env('OUTPUT').asString() || 'resource/out.txt';
 const scoreOption = env('SCORE').asBool();
-const strictMode = env('STRICT').asBool();
+
+const googleTranslate = require('google-translate')(apiKey);
 
 readFileLineByLine(inputFile, outputFile);
 
@@ -36,14 +37,13 @@ function readFileLineByLine(inputFile, outputFile) {
             word = line.substring(0, line.length -4 );
         }
 
-        translate(word, {from: 'en', to: 'fr'}).then(res => {
-            var text = res.text.toLowerCase();
-            fs.appendFileSync(outputFile, text + score + '\n');
-        }).catch(err => {
-            console.error(err);
-            if (strictMode) {
+        googleTranslate.translate(word, 'en', 'fr', function(err, translation) {
+            if (err) {
+                console.error(err);
                 process.exit(1);
             }
+            var text = translation.translatedText.toLowerCase();
+            fs.appendFileSync(outputFile, text + score + '\n');
         });
     });
 }
