@@ -44,6 +44,7 @@ function readFileLineByLine(inputFile, outputFile) {
                 if (strictMode) {
                     process.exit(1);
                 }
+                return;
             }
             var text = translation.translatedText.toLowerCase();
             fs.appendFileSync(outputFile, text + score + '\n');
