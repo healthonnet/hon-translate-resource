@@ -11,6 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "env-var": "^2.2.0",
-    "google-translate": "^1.0.7",
+    "google-translate": "^1.0.7"
   }
 }
